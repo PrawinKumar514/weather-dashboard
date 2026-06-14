@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Weather Dashboard Pro | Glassmorphism UI</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="logo-area">
+                <i class="fas fa-cloud-sun"></i>
+                <h1>Weather Dashboard Pro</h1>
+            </div>
+            <div class="theme-toggle-wrapper">
+                <button id="darkModeToggle" class="theme-btn" aria-label="Dark Mode Toggle">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Search Section -->
+        <div class="search-section">
+            <div class="search-card glass-card">
+                <div class="search-input-group">
+                    <i class="fas fa-search-location search-icon"></i>
+                    <input type="text" id="cityInput" placeholder="Search city... (e.g., London, New York, Tokyo)" autocomplete="off">
+                    <button id="searchBtn" class="search-btn">
+                        <i class="fas fa-arrow-right"></i> Search
+                    </button>
+                </div>
+                <p class="search-hint"><i class="fas fa-keyboard"></i> Press "Enter" to search</p>
+            </div>
+        </div>
+
+        <!-- Weather Display Area -->
+        <div class="weather-display-area">
+            <!-- Loading Spinner -->
+            <div id="loadingSpinner" class="loading-spinner-container" style="display: none;">
+                <div class="spinner"></div>
+                <p>Fetching live weather data...</p>
+            </div>
+
+            <!-- Error Message -->
+            <div id="errorMessage" class="error-message glass-card" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span id="errorText"></span>
+            </div>
+
+            <!-- Weather Info Card -->
+            <div id="weatherCard" class="weather-info-card glass-card" style="display: none;">
+                <div class="weather-header">
+                    <div class="city-country">
+                        <h2 id="cityName">--</h2>
+                        <span id="countryCode" class="country-badge">--</span>
+                    </div>
+                    <div class="datetime-box">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span id="currentDateTime">--</span>
+                    </div>
+                </div>
+
+                <div class="weather-condition-area">
+                    <div class="weather-icon-temp">
+                        <img id="weatherIcon" src="" alt="weather icon" width="90" height="90">
+                        <div class="temp-wrap">
+                            <span id="temperature" class="temp-value">--</span>
+                            <span class="temp-unit">°C</span>
+                        </div>
+                    </div>
+                    <div class="condition-text">
+                        <i class="fas fa-cloud-sun-rain"></i>
+                        <span id="weatherDesc">--</span>
+                    </div>
+                </div>
+
+                <div class="weather-stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-thermometer-half"></i>
+                        <div class="stat-info">
+                            <p class="stat-label">Feels Like</p>
+                            <p class="stat-value"><span id="feelsLike">--</span>°C</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-tint"></i>
+                        <div class="stat-info">
+                            <p class="stat-label">Humidity</p>
+                            <p class="stat-value"><span id="humidity">--</span>%</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-wind"></i>
+                        <div class="stat-info">
+                            <p class="stat-label">Wind Speed</p>
+                            <p class="stat-value"><span id="windSpeed">--</span> m/s</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="weather-footer-note">
+                    <i class="fas fa-map-marker-alt"></i> Real-time data • Powered by OpenWeather
+                </div>
+            </div>
+        </div>
+
+        <div class="info-note" id="welcomeNote">
+            <i class="fas fa-cloud-moon"></i> Search any city to get live weather insights ✨
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
