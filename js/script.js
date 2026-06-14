@@ -80,8 +80,7 @@ function updateWeatherUI(data) {
     const iconCode = data.weather[0].icon;
     weatherIconImg.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
     weatherIconImg.alt = description;
-    const formattedDateTime = formatLocalDateTime(data.timezone);
-    currentDateTimeSpan.textContent = formattedDateTime;
+    startLiveClock(data.timezone);
 }
 
 // -------------------- Fetch Weather (async/await) --------------------
@@ -186,3 +185,36 @@ document.addEventListener("DOMContentLoaded", () => {
     initDarkMode();
     loadLastCityWeather();
 });
+
+let clockInterval;
+
+function startLiveClock(timezoneOffset) {
+
+    if (clockInterval) {
+        clearInterval(clockInterval);
+    }
+
+    function updateClock() {
+        const now = new Date();
+        const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+
+        const cityTime = new Date(
+            utc + timezoneOffset * 1000
+        );
+
+        currentDateTimeSpan.textContent =
+            cityTime.toLocaleString("en-IN", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: true
+            });
+    }
+
+    updateClock();
+    clockInterval = setInterval(updateClock, 1000);
+}
